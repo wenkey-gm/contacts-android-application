@@ -1,6 +1,7 @@
 package com.everest.contacts
 
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import firstName
@@ -31,6 +32,12 @@ class ContactsActivity : AppCompatActivity(){
 
 
     }
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(firstName, findViewById<TextView>(R.id.contactName1).text.toString())
+        outState.putString(secondName, findViewById<TextView>(R.id.phoneNumber1).text.toString())
+        outState.putString(firstNumber, findViewById<TextView>(R.id.contactName2).text.toString())
+        outState.putString(secondNumber, findViewById<TextView>(R.id.phoneNumber2).text.toString())
+    }
 
 }

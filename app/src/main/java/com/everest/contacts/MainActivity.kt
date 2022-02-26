@@ -2,7 +2,6 @@ package com.everest.contacts
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,8 @@ import secondName
 import secondNumber
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,9 +33,24 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(secondNumber, contactNumber2.text.toString())
             startActivity(intent)
         }
-
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(firstName, findViewById<EditText>(R.id.contactNameOne).text.toString())
+        outState.putString(secondName, findViewById<EditText>(R.id.contactNameTwo).text.toString())
+        outState.putString(firstNumber, findViewById<EditText>(R.id.contactNumberOne).text.toString())
+        outState.putString(secondNumber, findViewById<EditText>(R.id.contactNumberOne).text.toString())
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState.getString(firstName)
+        savedInstanceState.get(secondName)
+        savedInstanceState.get(firstNumber)
+        savedInstanceState.get(secondNumber)
+
+    }
 
 }
 
