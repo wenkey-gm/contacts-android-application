@@ -3,16 +3,20 @@ package com.everest.contacts
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import firstName
+import firstNumber
+import secondName
+import secondNumber
 
 class ContactsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacts)
 
-        val contactOneName=intent.getStringExtra("FIRST_CONTACT")
-        val contactTwoName=intent.getStringExtra("SECOND_CONTACT")
-        val contactOneNumber=intent.getStringExtra("FIRST_NUMBER")
-        val contactTwoNumber=intent.getStringExtra("SECOND_NUMBER")
+        val contactOneName=intent.getStringExtra(firstName)
+        val contactTwoName=intent.getStringExtra(secondName)
+        val contactOneNumber=intent.getStringExtra(firstNumber)
+        val contactTwoNumber=intent.getStringExtra(secondNumber)
 
         val contactOneNameTV = findViewById<TextView>(R.id.contactName1)
         val contactOneNumberTV = findViewById<TextView>(R.id.phoneNumber1)
