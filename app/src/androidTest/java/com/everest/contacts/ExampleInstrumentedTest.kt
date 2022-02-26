@@ -29,7 +29,7 @@ class ExampleInstrumentedTest {
         //enter the text
         onView(withId(R.id.contactNameOne)).perform(typeText("wenkey"), closeSoftKeyboard())
         onView(withId(R.id.contactNumberOne)).perform(typeText("1234"), closeSoftKeyboard())
-        onView(withId(R.id.contactNameTwo)).perform(typeText("kutty"), closeSoftKeyboard())
+        onView(withId(R.id.contactNameTwo)).perform(typeText("muni"), closeSoftKeyboard())
         onView(withId(R.id.contactNumberTwo)).perform(typeText("45678"), closeSoftKeyboard())
 
         //button is clicked
@@ -38,7 +38,7 @@ class ExampleInstrumentedTest {
         //No need to tell espresso, while activity is changed
         onView(withId(R.id.contactName1)).check(matches(withText("wenkey")))
         onView(withId(R.id.phoneNumber1)).check(matches(withText("1234")))
-        onView(withId(R.id.contactName2)).check(matches(withText("kutty")))
+        onView(withId(R.id.contactName2)).check(matches(withText("muni")))
         onView(withId(R.id.phoneNumber2)).check(matches(withText("45678")))
     }
 
