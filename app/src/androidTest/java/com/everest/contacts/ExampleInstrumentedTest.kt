@@ -23,7 +23,6 @@ class ExampleInstrumentedTest {
     val rule = ActivityScenarioRule(MainActivity::class.java)
 
 
-
     @Test
     fun should_display_values_in_second_activity() {
         //enter the text
