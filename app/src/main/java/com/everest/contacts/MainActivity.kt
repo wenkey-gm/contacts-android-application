@@ -5,50 +5,57 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import firstName
-import firstNumber
-import secondName
-import secondNumber
+import com.everest.contacts.constants.*
+import com.everest.contacts.databinding.ActivityMainBinding
+import com.everest.contacts.model.Contact
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val contactName1 = findViewById<EditText>(R.id.contactNameOne)
-        val contactName2 = findViewById<EditText>(R.id.contactNameTwo)
-        val contactNumber1 = findViewById<EditText>(R.id.contactNumberOne)
-        val contactNumber2 = findViewById<EditText>(R.id.contactNumberTwo)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
-        val saveButton = findViewById<Button>(R.id.save_button)
-
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             val intent = Intent(this, ContactsActivity::class.java)
-            intent.putExtra(firstName, contactName1.text.toString())
-            intent.putExtra(secondName, contactName2.text.toString())
-            intent.putExtra(firstNumber, contactNumber1.text.toString())
-            intent.putExtra(secondNumber, contactNumber2.text.toString())
+            val firstContact = Contact(
+                binding.contactName1.editText?.text.toString(),
+                binding.contactNumber1.editText?.text.toString()
+            )
+            val secondContact = Contact(
+                binding.contactName2.editText?.text.toString(),
+                binding.contactNumber2.editText?.text.toString()
+            )
+            intent.putExtra(FIRST_CONTACT, firstContact)
+            intent.putExtra(SECOND_CONTACT, secondContact)
             startActivity(intent)
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+
+        val firstContact = Contact(
+            binding.contactName1.editText?.text.toString(),
+            binding.contactNumber1.editText?.text.toString()
+        )
+        val secondContact = Contact(
+            binding.contactName2.editText?.text.toString(),
+            binding.contactNumber2.editText?.text.toString()
+        )
+        outState.putParcelable(FIRST_CONTACT, firstContact)
+        outState.putParcelable(SECOND_CONTACT, secondContact)
         super.onSaveInstanceState(outState)
-        outState.putString(firstName, findViewById<EditText>(R.id.contactNameOne).text.toString())
-        outState.putString(secondName, findViewById<EditText>(R.id.contactNameTwo).text.toString())
-        outState.putString(firstNumber, findViewById<EditText>(R.id.contactNumberOne).text.toString())
-        outState.putString(secondNumber, findViewById<EditText>(R.id.contactNumberOne).text.toString())
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        savedInstanceState.getParcelable<Contact>(FIRST_CONTACT)
+        savedInstanceState.getParcelable<Contact>(SECOND_CONTACT)
+
         super.onRestoreInstanceState(savedInstanceState)
-        savedInstanceState.getString(firstName)
-        savedInstanceState.get(secondName)
-        savedInstanceState.get(firstNumber)
-        savedInstanceState.get(secondNumber)
 
     }
 
